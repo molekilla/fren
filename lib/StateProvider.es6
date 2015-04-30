@@ -1,6 +1,7 @@
 let _ = require('underscore');
 //import * as _ from 'underscore';
 let q = require('q');
+let debug = require('debug')('fren:state');
 
 function StateProvider() {
     this.states = {};
@@ -29,11 +30,16 @@ StateProvider.prototype.go = function (name, nodes) {
 
                 _.extend(step, node);
                 console.log('requesting: ' + step.url);
-                
+
                 return step.future(step.url, step.options)
                     .then((args) => {
                         console.log(args.length);
                         step.reduce($state, ...args);
+                    }, (err) => {
+                        if (step.onError) {
+                            step.onError(err);
+                        }
+                        debug(err);
                     });
 
             });
@@ -41,10 +47,16 @@ StateProvider.prototype.go = function (name, nodes) {
         console.log('children: ' + futures.length);
         futures.reduce(q.when, q(0));
     } else {
-        console.log('requesting: ' + step.url);
-        step.future(step.url, step.options).done(function (resp) {
-            step.reduce($state, ...resp);
-        });
+        // console.log('requesting: ' + step.url);
+        step.future(step.url, step.options)
+            .done((resp) => {
+                step.reduce($state, ...resp);
+            }, (err) => {
+                if (step.onError) {
+                    step.onError(err);
+                }
+                debug(err);
+            });
     }
 };
 
