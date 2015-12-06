@@ -1,3 +1,6 @@
+.tscache
+lib/*.map
+
 # Logs
 logs
 *.log

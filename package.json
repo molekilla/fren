@@ -7,14 +7,14 @@
     "templates",
     "parser"
   ],
-  "version": "0.1.1",
+  "version": "0.2.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/molekilla/fren.git"
   },
   "main": "./lib/index.js",
   "engines": {
-    "node": ">= 0.10"
+    "node": ">= 4.2.1"
   },
   "dependencies": {
     "async": "~0.2.10",
@@ -27,15 +27,15 @@
     "underscore": "1.7.0"
   },
   "devDependencies": {
-    "grunt-babel": "^5.0.0",
     "grunt-contrib-jasmine": "~0.4.2",
-    "grunt-contrib-jshint": "~0.1.1",
     "grunt-jasmine-node": "*",
-    "grunt-ts": "^4.0.1",
+    "grunt-ts": "^5.2.0",
     "heredoc": "*",
     "jasmine-node": "*"
   },
   "scripts": {
     "test": "grunt spec"
-  }
+  },
+  "typings": "lib/index",
+  "files": ["lib/"]
 }

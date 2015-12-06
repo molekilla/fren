@@ -69,36 +69,19 @@ module.exports = function (grunt) {
         },
         ts: {
             default: {
-                files: [
-                    {
-                        expand: true,
-                        //          cwd: "<%= cwd %>",
-                        src: ["lib/**/*.ts"],
-                        //          dest: "<%= cwd %>",
-                        ext: ".js"
-        }
-    ],
+                //src: ["**/*.ts", "!node_modules/**/*.ts"],
+                files: [{ src: ["**/*.ts", "!node_modules/**/*.ts"], dest: 'lib/' }],
                 options: {
+                    fast: 'never',
+                    //outDir: "lib/",
                     sourceMap: true,
-                    module: 'commonjs'
+                    module: 'commonjs',
+                    declaration: true
+                   // target: 'es6'
                 }
             }
         },
-        babel: {
-              es6: {
-    files: [
-        {
-          expand: true,
-//          cwd: "<%= cwd %>",
-          src: ["lib/**/*.es6"],
-//          dest: "<%= cwd %>",
-          ext: ".js"
-        }
-    ],
-    options: {
-    }
-  }
-        },
+
         jasmine: {
             pivotal: {
                 src: 'public/javascripts/*.js',
@@ -113,12 +96,10 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-jasmine-node');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-ts');
-    grunt.loadNpmTasks('grunt-babel');
 
-    grunt.registerTask('build', ['babel:es6']);
-    grunt.registerTask('spec', ['jasmine_node', 'jasmine', 'jshint'])
+    grunt.registerTask('build', ['ts:default']);
+    grunt.registerTask('spec', ['jasmine_node', 'jasmine'])
 
 
 };

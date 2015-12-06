@@ -20,7 +20,7 @@ describe("Loteria spec", function () {
 
 
     it("when html is requested, should return a model", function (done) {
-
+console.log(Fren);
         var fren = new Fren();
         var ua = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.102 Safari/537.36';
 
