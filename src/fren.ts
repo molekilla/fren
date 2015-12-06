@@ -1,5 +1,5 @@
 const q = require('q');
-const request = require('request');
+import request = require('request');
 import StateProvider = require('./StateProvider');
 const _ = require('underscore');
 
@@ -19,7 +19,7 @@ class Fren {
         } else if (options.method === 'put') {
             promise = q.nbind(request.put, request);
         } else if (options.method === 'delete') {
-            promise = q.nbind(request.delete, request);
+            promise = q.nbind(request.del, request);
         } else if (options.method === 'patch') {
             promise = q.nbind(request.patch, request);
         }
@@ -43,7 +43,7 @@ class Fren {
     delete(options) {
         console.log('step: ' + options.name);
         options.method = 'delete';
-        var promise = q.nbind(request.delete, request);
+        var promise = q.nbind(request.del, request);
 
         this.state.add(options.name, promise, options);
 

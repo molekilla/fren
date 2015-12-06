@@ -1,3 +1,4 @@
+//import request = require('request');
 const _ = require('underscore');
 //import * as _ from 'underscore';
 const q = require('q');
@@ -10,7 +11,7 @@ class StateProvider {
     }
 
 
-    add(name:string, future, opts) {
+    add(name:string, future:any, opts) {
         this.states[name] = _.extend({
             future: future
         }, opts);
