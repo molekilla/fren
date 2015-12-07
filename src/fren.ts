@@ -3,13 +3,18 @@ import request = require('request');
 import StateProvider = require('./StateProvider');
 const _ = require('underscore');
 
-class Fren {
+export interface StepConfig {
+    name: string;
+    method?: string;
+}
+
+export class Fren {
     state:StateProvider;
-    constructor(options) {
+    constructor() {
       this.state = new StateProvider();
     }
 
-    step(options) {
+    step(options:StepConfig) {
         console.log('step: ' + options.name);
         var promise = null;
         if (options.method === 'get') {
@@ -30,7 +35,7 @@ class Fren {
         return this;
     }
 
-    get(options) {
+    get(options:StepConfig) {
         console.log('step: ' + options.name);
         options.method = 'get';
         var promise = q.nbind(request.get, request);
@@ -40,7 +45,7 @@ class Fren {
         return this;
     }
 
-    delete(options) {
+    delete(options:StepConfig) {
         console.log('step: ' + options.name);
         options.method = 'delete';
         var promise = q.nbind(request.del, request);
@@ -50,7 +55,7 @@ class Fren {
         return this;
     }
 
-    put(options) {
+    put(options:StepConfig) {
         console.log('step: ' + options.name);
         options.method = 'put';
         var promise = q.nbind(request.put, request);
@@ -60,7 +65,7 @@ class Fren {
         return this;
     }
 
-    post(options) {
+    post(options:StepConfig) {
         console.log('step: ' + options.name);
         options.method = 'post';
         var promise = q.nbind(request.post, request);
@@ -70,7 +75,7 @@ class Fren {
         return this;
     }
 
-    patch(options) {
+    patch(options:StepConfig) {
         console.log('step: ' + options.name);
         options.method = 'patch';
         var promise = q.nbind(request.patch, request);
@@ -87,5 +92,5 @@ class Fren {
 };
 
 
-export = Fren;
+//export = Fren;
 //module.exports = Fren;

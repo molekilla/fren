@@ -1,2 +1,2 @@
-declare var _default: any;
-export = _default;
+import { Fren } from './fren';
+export = Fren;

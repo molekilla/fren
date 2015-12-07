@@ -1,3 +1,3 @@
-//import * as Fren from './fren';
+import {Fren} from './fren';
 //export var Fren;
-export = require('./fren');
+export = Fren;//require('./fren');
