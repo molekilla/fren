@@ -1,16 +1,13 @@
-import StateProvider = require('./StateProvider');
-export interface StepConfig {
-    name: string;
-    method?: string;
-}
+import { StateProvider } from './StateProvider';
+import { StateItem } from './stateItem';
 export declare class Fren {
-    state: StateProvider;
+    stateCache: StateProvider;
     constructor();
-    step(options: StepConfig): Fren;
-    get(options: StepConfig): Fren;
-    delete(options: StepConfig): Fren;
-    put(options: StepConfig): Fren;
-    post(options: StepConfig): Fren;
-    patch(options: StepConfig): Fren;
+    step(options: StateItem): Fren;
+    get(options: StateItem): Fren;
+    delete(options: StateItem): Fren;
+    put(options: StateItem): Fren;
+    post(options: StateItem): Fren;
+    patch(options: StateItem): Fren;
     start(): void;
 }

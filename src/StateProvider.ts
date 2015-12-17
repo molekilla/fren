@@ -3,15 +3,16 @@ const _ = require('underscore');
 //import * as _ from 'underscore';
 const q = require('q');
 const debug = require('debug')('fren:state');
+import {StateItem} from './stateItem';
 
-class StateProvider {
-    states:any;
+export class StateProvider {
+    states: any;
     constructor() {
-      this.states = {};
+        this.states = {};
     }
 
 
-    add(name:string, future:any, opts) {
+    add(name: string, future: any, opts) {
         this.states[name] = _.extend({
             future: future
         }, opts);
@@ -19,7 +20,7 @@ class StateProvider {
     }
 
 
-   go(name:string, nodes?:any) {
+    go(name: string, nodes?: any) {
         let step = this.states[name];
         let $state = this;
 
@@ -35,7 +36,8 @@ class StateProvider {
                     _.extend(step, node);
                     console.log('requesting: ' + step.url);
 
-                    return step.future(step.url, step.options)
+                    return step
+                        .future(step.url, step.options)
                         .then((args) => {
                             console.log(args.length);
                             step.reduce($state, ...args);
@@ -65,4 +67,5 @@ class StateProvider {
     }
 
 }
-export = StateProvider;
+
+// export = StateProvider;
