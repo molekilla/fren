@@ -13,24 +13,13 @@ export class Fren {
     }
 
     step(options:StateItem) {
-        console.log('step: ' + options.name);
-        let promise = null;
-        if (options.method === 'get') {
-            promise = q.nbind(request.get, request);
-        } else if (options.method === 'post') {
-            promise = q.nbind(request.post, request);
-        } else if (options.method === 'put') {
-            promise = q.nbind(request.put, request);
-        } else if (options.method === 'delete') {
-            promise = q.nbind(request.del, request);
-        } else if (options.method === 'patch') {
-            promise = q.nbind(request.patch, request);
+        let func = this[options.method];
+        if (func === null) {
+            throw new Error('Unknown method');
+        } else {
+            return func.call(this, options);
         }
-
-
-        this.stateCache.add(options.name, promise, options);
-
-        return this;
+        
     }
 
     get(options:StateItem) {

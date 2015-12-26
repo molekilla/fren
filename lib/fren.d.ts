@@ -3,7 +3,7 @@ import { StateItem } from './stateItem';
 export declare class Fren {
     stateCache: StateProvider;
     constructor();
-    step(options: StateItem): Fren;
+    step(options: StateItem): any;
     get(options: StateItem): Fren;
     delete(options: StateItem): Fren;
     put(options: StateItem): Fren;

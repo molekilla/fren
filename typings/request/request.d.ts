@@ -62,7 +62,7 @@ declare module 'request' {
 		interface DefaultUriUrlRequestApi<TRequest extends Request,
 			TOptions extends CoreOptions,
 			TUriUrlOptions>	extends RequestAPI<TRequest, TOptions, TUriUrlOptions> {
-
+				
 			defaults(options: TOptions): DefaultUriUrlRequestApi<TRequest, TOptions, OptionalUriUrl>;
 			(): TRequest;
 			get(): TRequest;
